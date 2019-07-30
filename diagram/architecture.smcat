@@ -1,0 +1,17 @@
+initial,
+init:
+  load/register extensions
+  fire hook events,
+ready:
+  http/socket listen
+  database connect
+  job schedule ...,
+final;
+
+initial => init: bootstrap;
+
+init => init: discover;
+init => ready;
+init => final: error;
+
+ready => final: stop;
